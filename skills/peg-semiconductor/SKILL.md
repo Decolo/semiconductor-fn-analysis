@@ -204,6 +204,8 @@ Company Lifecycle:
 
 See [REFERENCE.md](REFERENCE.md) for detailed methodology and [EXAMPLES.md](EXAMPLES.md) for worked cases.
 
+For hybrid names with legacy revenue plus a high-expectation new technology platform, see [MIXED-OPTIONALITY.md](MIXED-OPTIONALITY.md). Use that when a company is being re-rated by a new packaging/substrate/process story that is still too small for normal PEG/PSG to explain on a full-company basis.
+
 ## Data Sources
 
 Preferred lookup order for agents:
