@@ -9,6 +9,7 @@ Framework collection for semiconductor investing and market-context analysis. Ea
 | [pb-semiconductor](skills/pb-semiconductor/SKILL.md) | PB ÷ Gross Margin | Heavy-asset cyclicals (MLCC, foundries, memory, specialty chemicals) | 市净率, 重资产周期品, MLCC valuation |
 | [peg-semiconductor](skills/peg-semiconductor/SKILL.md) | PEG / PSG | Asset-light growth (optical modules, fabless chip design, AI power ICs) | PEG, PSG, 成长股估值, 光模块 |
 | [options-market-structure](skills/options-market-structure/SKILL.md) | Options structure → trend regime | Broad equity index context, growth tapes, semiconductor overlays | 期权结构, moneyness-aware put/call, IV, skew, gamma, 趋势交易辅助 |
+| [speculative-narrative-audit](skills/speculative-narrative-audit/SKILL.md) | Claim-chain audit → proof/disproof windows | Viral concept-stock essays, obscure materials, unverified supply-chain mappings | 小作文, 产业链传闻, 唯一/唯二, 预期差, 证伪节点 |
 
 ## How to Use
 
@@ -50,6 +51,20 @@ This is an **agent skill collection** — plain markdown files readable by any A
 - 把 moneyness-aware put/call, IV, skew, gamma 翻译成趋势环境
 ```
 
+**Auditing a viral stock narrative instead of valuing a confirmed business?**
+
+```
+帖子/传闻是否把真实产业事件嫁接到一个未证实公司映射上？
+是否出现 "国内唯一 / 全球唯二 / 隐形供应商 / 价格翻倍 / 利润爆发"？
+
+→ speculative-narrative-audit
+
+常见场景:
+- 拆解半导体/材料小作文
+- 判断预期差是基本面机会还是交易性叙事
+- 找核心 kill-switch claim 和证伪时间点
+```
+
 ### Grey-Zone Companies
 
 Some semiconductor companies don't fit neatly. Here's what to use:
@@ -89,10 +104,13 @@ semiconductor-fn-analysis/
     │   ├── SKILL.md        # Scope gate, PEG/PSG formulas, graduation tracker
     │   ├── REFERENCE.md    # PEG traps, growth quality, cross-framework map
     │   └── EXAMPLES.md     # 中际旭创, 杰华特, 晶丰明源, MPS, PEG misfire
-    └── options-market-structure/
-        ├── SKILL.md        # Six-check workflow for reading options structure as trend context
-        ├── REFERENCE.md    # Signal layer, regime layer, data-confidence ladder, semi lens
-        └── EXAMPLES.md     # Trend confirmation, fragile rally, squeeze, panic, NVDA/SOXX/QQQ
+    ├── options-market-structure/
+    │   ├── SKILL.md        # Six-check workflow for reading options structure as trend context
+    │   ├── REFERENCE.md    # Signal layer, regime layer, data-confidence ladder, semi lens
+    │   └── EXAMPLES.md     # Trend confirmation, fragile rally, squeeze, panic, NVDA/SOXX/QQQ
+    └── speculative-narrative-audit/
+        ├── SKILL.md        # Claim-chain audit, kill-switch claim, proof/disproof windows
+        └── EXAMPLES.md     # Concept essay case pattern and reusable verdict language
 ```
 
 ## License
