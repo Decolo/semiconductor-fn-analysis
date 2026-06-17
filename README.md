@@ -1,6 +1,6 @@
 # semiconductor-fn-analysis
 
-Valuation framework collection for semiconductor investing. Each skill covers a distinct company archetype — choose the right tool for the right business model.
+Framework collection for semiconductor investing and market-context analysis. Each skill covers a distinct valuation archetype or market-structure use case — choose the right tool for the right question.
 
 ## Skills
 
@@ -8,6 +8,8 @@ Valuation framework collection for semiconductor investing. Each skill covers a 
 |-------|-----------|-----------|-------------|
 | [pb-semiconductor](skills/pb-semiconductor/SKILL.md) | PB ÷ Gross Margin | Heavy-asset cyclicals (MLCC, foundries, memory, specialty chemicals) | 市净率, 重资产周期品, MLCC valuation |
 | [peg-semiconductor](skills/peg-semiconductor/SKILL.md) | PEG / PSG | Asset-light growth (optical modules, fabless chip design, AI power ICs) | PEG, PSG, 成长股估值, 光模块 |
+| [options-market-structure](skills/options-market-structure/SKILL.md) | Options structure → trend regime | Broad equity index context, growth tapes, semiconductor overlays | 期权结构, moneyness-aware put/call, IV, skew, gamma, 趋势交易辅助 |
+| [speculative-narrative-audit](skills/speculative-narrative-audit/SKILL.md) | Claim-chain audit → proof/disproof windows | Viral concept-stock essays, obscure materials, unverified supply-chain mappings | 小作文, 产业链传闻, 唯一/唯二, 预期差, 证伪节点 |
 
 ## How to Use
 
@@ -35,6 +37,34 @@ This is an **agent skill collection** — plain markdown files readable by any A
                 例: 杰华特、晶丰明源 (HPC业务)
 ```
 
+**Not valuing a company, but reading market conditions?**
+
+```
+你不是在问“这家公司值多少钱”，而是在问：
+“现在期权市场是在支持上涨、支持下跌，还是更容易震荡/挤仓/恐慌？”
+
+→ options-market-structure
+
+常见场景:
+- 看 SPY / QQQ / SOXX 的期权结构是否确认趋势
+- 判断 NVDA 的期权狂热是在带动板块还是扭曲板块
+- 把 moneyness-aware put/call, IV, skew, gamma 翻译成趋势环境
+```
+
+**Auditing a viral stock narrative instead of valuing a confirmed business?**
+
+```
+帖子/传闻是否把真实产业事件嫁接到一个未证实公司映射上？
+是否出现 "国内唯一 / 全球唯二 / 隐形供应商 / 价格翻倍 / 利润爆发"？
+
+→ speculative-narrative-audit
+
+常见场景:
+- 拆解半导体/材料小作文
+- 判断预期差是基本面机会还是交易性叙事
+- 找核心 kill-switch claim 和证伪时间点
+```
+
 ### Grey-Zone Companies
 
 Some semiconductor companies don't fit neatly. Here's what to use:
@@ -46,6 +76,7 @@ Some semiconductor companies don't fit neatly. Here's what to use:
 | IP licensors | ARM, Ceva | EV/Sales + royalty CAGR | 极轻资产，PEG 偏差大 |
 | SiC substrate pure-plays | 天岳先进, 天科合达 | PB + supply-side analysis | 衬底是重资产大宗品，和 MLCC 同理 |
 | Distributors | 艾睿电子, 大联大 | PB + inventory cycle | 库存周期驱动，不是设计驱动 |
+| Market structure / tape reading | SPY, QQQ, SOXX, NVDA | Options structure framework | 不是估值问题，而是趋势环境判断 |
 
 ### Install
 
@@ -57,18 +88,29 @@ Or reference individual skill files directly in your agent's context.
 
 ## Structure
 
-```
+```text
 semiconductor-fn-analysis/
+├── docs/
+│   ├── brainstorms/
+│   ├── ideation/
+│   └── plans/
 ├── README.md
 └── skills/
     ├── pb-semiconductor/
     │   ├── SKILL.md        # Scope gate, four-dimensional screen, output template
     │   ├── REFERENCE.md    # Why PB > PE, detailed methodology, pitfalls
     │   └── EXAMPLES.md     # 风华高科 vs 三环, Intel, 中船特气
-    └── peg-semiconductor/
-        ├── SKILL.md        # Scope gate, PEG/PSG formulas, graduation tracker
-        ├── REFERENCE.md    # PEG traps, growth quality, cross-framework map
-        └── EXAMPLES.md     # 中际旭创, 杰华特, 晶丰明源, MPS, PEG misfire
+    ├── peg-semiconductor/
+    │   ├── SKILL.md        # Scope gate, PEG/PSG formulas, graduation tracker
+    │   ├── REFERENCE.md    # PEG traps, growth quality, cross-framework map
+    │   └── EXAMPLES.md     # 中际旭创, 杰华特, 晶丰明源, MPS, PEG misfire
+    ├── options-market-structure/
+    │   ├── SKILL.md        # Six-check workflow for reading options structure as trend context
+    │   ├── REFERENCE.md    # Signal layer, regime layer, data-confidence ladder, semi lens
+    │   └── EXAMPLES.md     # Trend confirmation, fragile rally, squeeze, panic, NVDA/SOXX/QQQ
+    └── speculative-narrative-audit/
+        ├── SKILL.md        # Claim-chain audit, kill-switch claim, proof/disproof windows
+        └── EXAMPLES.md     # Concept essay case pattern and reusable verdict language
 ```
 
 ## License
