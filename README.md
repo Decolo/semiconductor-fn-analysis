@@ -10,6 +10,7 @@ Framework collection for semiconductor investing and market-context analysis. Ea
 | [peg-semiconductor](skills/peg-semiconductor/SKILL.md) | PEG / PSG | Asset-light growth (optical modules, fabless chip design, AI power ICs) | PEG, PSG, 成长股估值, 光模块 |
 | [options-market-structure](skills/options-market-structure/SKILL.md) | Options structure → trend regime | Broad equity index context, growth tapes, semiconductor overlays | 期权结构, moneyness-aware put/call, IV, skew, gamma, 趋势交易辅助 |
 | [speculative-narrative-audit](skills/speculative-narrative-audit/SKILL.md) | Claim-chain audit → proof/disproof windows | Viral concept-stock essays, obscure materials, unverified supply-chain mappings | 小作文, 产业链传闻, 唯一/唯二, 预期差, 证伪节点 |
+| [fn-adversarial-review](skills/fn-adversarial-review/SKILL.md) | Data / logic / contradiction stress test | Existing semiconductor investment theses and agent conclusions | review thesis, 数据真实性, 逻辑冲突, 反方审阅, bear case |
 
 ## How to Use
 
@@ -65,6 +66,20 @@ This is an **agent skill collection** — plain markdown files readable by any A
 - 找核心 kill-switch claim 和证伪时间点
 ```
 
+**Already have a thesis and want to attack it?**
+
+```
+已有结论需要复核，而不是重新生成一个估值框架？
+需要检查数据真假、逻辑是否跳跃、估值口径是否冲突、反方论点是否足够强？
+
+→ fn-adversarial-review
+
+常见场景:
+- review agent 之前给出的投资结论
+- 检查 PB / PEG / PSG 结论里的数据口径和逻辑链
+- 找 thesis-breaking claim、最强 bear case 和下一步证伪窗口
+```
+
 ### Grey-Zone Companies
 
 Some semiconductor companies don't fit neatly. Here's what to use:
@@ -108,9 +123,12 @@ semiconductor-fn-analysis/
     │   ├── SKILL.md        # Six-check workflow for reading options structure as trend context
     │   ├── REFERENCE.md    # Signal layer, regime layer, data-confidence ladder, semi lens
     │   └── EXAMPLES.md     # Trend confirmation, fragile rally, squeeze, panic, NVDA/SOXX/QQQ
-    └── speculative-narrative-audit/
+    ├── speculative-narrative-audit/
         ├── SKILL.md        # Claim-chain audit, kill-switch claim, proof/disproof windows
         └── EXAMPLES.md     # Concept essay case pattern and reusable verdict language
+    └── fn-adversarial-review/
+        ├── SKILL.md        # Subagent-based adversarial review for existing investment theses
+        └── EXAMPLES.md     # Thesis review, data authenticity, and contradiction examples
 ```
 
 ## License
