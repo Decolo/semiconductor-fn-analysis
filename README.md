@@ -11,6 +11,7 @@ Framework collection for semiconductor investing and market-context analysis. Ea
 | [options-market-structure](skills/options-market-structure/SKILL.md) | Options structure → trend regime | Broad equity index context, growth tapes, semiconductor overlays | 期权结构, moneyness-aware put/call, IV, skew, gamma, 趋势交易辅助 |
 | [speculative-narrative-audit](skills/speculative-narrative-audit/SKILL.md) | Claim-chain audit → proof/disproof windows | Viral concept-stock essays, obscure materials, unverified supply-chain mappings | 小作文, 产业链传闻, 唯一/唯二, 预期差, 证伪节点 |
 | [fn-adversarial-review](skills/fn-adversarial-review/SKILL.md) | Data / logic / contradiction stress test | Existing semiconductor investment theses and agent conclusions | review thesis, 数据真实性, 逻辑冲突, 反方审阅, bear case |
+| [retail-sentiment-scanner](skills/retail-sentiment-scanner/SKILL.md) | Cross-platform retail sentiment audit (X/Reddit/Substack) | Pre-position sentiment check, crowded trade detection | 散户情绪, 拥挤交易, FOMO, Reddit, Twitter, Substack |
 
 ## How to Use
 
@@ -129,6 +130,9 @@ semiconductor-fn-analysis/
     └── fn-adversarial-review/
         ├── SKILL.md        # Subagent-based adversarial review for existing investment theses
         └── EXAMPLES.md     # Thesis review, data authenticity, and contradiction examples
+    └── retail-sentiment-scanner/
+        ├── SKILL.md        # Cross-platform retail sentiment audit (X, Reddit, Substack)
+        └── EXAMPLES.md     # Storage manufacturer position review, pre-earnings check template
 ```
 
 ## License
