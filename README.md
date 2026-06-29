@@ -12,12 +12,41 @@ Framework collection for semiconductor investing and market-context analysis. Ea
 | [speculative-narrative-audit](skills/speculative-narrative-audit/SKILL.md) | Claim-chain audit → proof/disproof windows | Viral concept-stock essays, obscure materials, unverified supply-chain mappings | 小作文, 产业链传闻, 唯一/唯二, 预期差, 证伪节点 |
 | [fn-adversarial-review](skills/fn-adversarial-review/SKILL.md) | Data / logic / contradiction stress test | Existing semiconductor investment theses and agent conclusions | review thesis, 数据真实性, 逻辑冲突, 反方审阅, bear case |
 | [retail-sentiment-scanner](skills/retail-sentiment-scanner/SKILL.md) | Cross-platform retail sentiment audit (X/Reddit/Substack) | Pre-position sentiment check, crowded trade detection | 散户情绪, 拥挤交易, FOMO, Reddit, Twitter, Substack |
+| [china-customs-trade-data](skills/china-customs-trade-data/SKILL.md) | China Customs CDP workflow → structured trade rows | China customs import/export extraction by HS code, country, and province | 中国海关, 海关总署, CDP, 验证码, HS code, WF6 |
+| [korea-customs-trade-data](skills/korea-customs-trade-data/SKILL.md) | UNIPASS CDP workflow → structured trade rows | Korea customs import/export extraction by HS code and country | 韩国海关, UNIPASS, CDP, HS code, 进出口数据 |
+| [japan-customs-trade-data](skills/japan-customs-trade-data/SKILL.md) | e-Stat CSV workflow → monthly trade rows | Japan customs import/export extraction by statistical code and country | 日本海关, e-Stat, HS code, 月度进出口, WF6 proxy |
 
 ## How to Use
 
 This is an **agent skill collection** — plain markdown files readable by any AI coding agent (Claude Code, Codex, Hermes, etc.).
 
 ### Quick Decision: Which Skill?
+
+**Need customs rows instead of analysis?**
+
+```
+需要海关进出口数据、HS/statistical code × country rows、页面状态恢复？
+
+中国海关 / 海关总署统计平台 / CAPTCHA / 省份拆分 / WF6 28261930？
+→ china-customs-trade-data
+
+日本海关 / e-Stat / 9位统计码 / WF6 proxy / 月度 CSV？
+→ japan-customs-trade-data
+
+韩国海关 / UNIPASS / HSK code / CDP 表单操作？
+→ korea-customs-trade-data
+
+常见场景:
+- 操作中国海关总署统计查询平台并等待用户完成验证码
+- 提取中国某 HS code 出口/进口按国家或省份拆分的数据
+- 构造 `queryDataList` URL 并验证 `CODE_TS`, `ORIGIN_COUNTRY`, `TRADE_CO_PORT` 参数
+- 提取日本某 9 位统计码的进口/出口月度表
+- 提取日本某 HS/statistical code 按国家拆分的数据
+- 判断日本是否能单独隔离某商品，如 WF6
+- 提取韩国某 HS code 的进口/出口月度表
+- 提取韩国某 HS code 按国家拆分的数据
+- UNIPASS 只打开 shell、表单丢状态、country popup 不稳定
+```
 
 **Ten-second framework selector:**
 
@@ -102,6 +131,27 @@ git clone https://github.com/Decolo/semiconductor-fn-analysis.git
 
 Or reference individual skill files directly in your agent's context.
 
+### Local Agent Exposure
+
+Repo `skills/` directories are the canonical source. Agent-private directories should link to this repo, not hold divergent copies. When Codex already loads `.agents/skills`, do not duplicate the same skill again under `.codex/skills`.
+
+```bash
+src="$PWD/skills/korea-customs-trade-data"
+ln -sfn "$src" /Users/decolo/.agents/skills/korea-customs-trade-data
+ln -sfn "$src" /Users/decolo/.hermes/skills/finance/korea-customs-trade-data
+ln -sfn ../../.agents/skills/korea-customs-trade-data /Users/decolo/.claude/skills/korea-customs-trade-data
+
+src="$PWD/skills/japan-customs-trade-data"
+ln -sfn "$src" /Users/decolo/.agents/skills/japan-customs-trade-data
+ln -sfn "$src" /Users/decolo/.hermes/skills/finance/japan-customs-trade-data
+ln -sfn ../../.agents/skills/japan-customs-trade-data /Users/decolo/.claude/skills/japan-customs-trade-data
+
+src="$PWD/skills/china-customs-trade-data"
+ln -sfn "$src" /Users/decolo/.agents/skills/china-customs-trade-data
+ln -sfn "$src" /Users/decolo/.hermes/skills/finance/china-customs-trade-data
+ln -sfn ../../.agents/skills/china-customs-trade-data /Users/decolo/.claude/skills/china-customs-trade-data
+```
+
 ## Structure
 
 ```text
@@ -125,14 +175,25 @@ semiconductor-fn-analysis/
     │   ├── REFERENCE.md    # Signal layer, regime layer, data-confidence ladder, semi lens
     │   └── EXAMPLES.md     # Trend confirmation, fragile rally, squeeze, panic, NVDA/SOXX/QQQ
     ├── speculative-narrative-audit/
-        ├── SKILL.md        # Claim-chain audit, kill-switch claim, proof/disproof windows
-        └── EXAMPLES.md     # Concept essay case pattern and reusable verdict language
-    └── fn-adversarial-review/
-        ├── SKILL.md        # Subagent-based adversarial review for existing investment theses
-        └── EXAMPLES.md     # Thesis review, data authenticity, and contradiction examples
-    └── retail-sentiment-scanner/
-        ├── SKILL.md        # Cross-platform retail sentiment audit (X, Reddit, Substack)
-        └── EXAMPLES.md     # Storage manufacturer position review, pre-earnings check template
+    │   ├── SKILL.md        # Claim-chain audit, kill-switch claim, proof/disproof windows
+    │   └── EXAMPLES.md     # Concept essay case pattern and reusable verdict language
+    ├── fn-adversarial-review/
+    │   ├── SKILL.md        # Subagent-based adversarial review for existing investment theses
+    │   └── EXAMPLES.md     # Thesis review, data authenticity, and contradiction examples
+    ├── retail-sentiment-scanner/
+    │   ├── SKILL.md        # Cross-platform retail sentiment audit (X, Reddit, Substack)
+    │   └── EXAMPLES.md     # Storage manufacturer position review, pre-earnings check template
+    ├── china-customs-trade-data/
+    │   ├── SKILL.md        # China Customs CDP operation playbook
+    │   ├── scripts/         # Query URL construction helper
+    │   └── references/      # Parameters, CDP, WF6, fallback, and smoke notes
+    ├── korea-customs-trade-data/
+    │   ├── SKILL.md        # UNIPASS CDP operation playbook for Korea trade data extraction
+    │   └── references/     # CDP notes and live-portal smoke checklist
+    └── japan-customs-trade-data/
+        ├── SKILL.md        # e-Stat CSV workflow for Japan trade data extraction
+        ├── scripts/         # Deterministic CSV extraction CLI
+        └── references/      # e-Stat, WF6, country-code, CDP, and smoke notes
 ```
 
 ## License
