@@ -45,6 +45,8 @@ When the platform supports subagents and the review is material, run parallel re
 - Check source dates, reporting periods, units, currency, share counts, segment definitions, and adjusted vs GAAP metrics
 - Label each key data claim as **confirmed**, **refuted**, **unsupported**, **stale**, or **source-mismatch**
 - Treat absence as negative evidence only when the claim should be material enough to appear in filings or official communication
+- **Check for missing entities**: search for key players that should appear in the thesis but are absent (e.g. a company with significant market share omitted from a supply chain map; an important competitor unmentioned in a competitive analysis)
+- **Verify stock codes**: confirm ticker symbols against exchange data (common errors: wrong ticker suffix, wrong exchange, stale codes after corporate actions)
 
 ### Agent B: Logic Adversary
 
@@ -52,6 +54,7 @@ When the platform supports subagents and the review is material, run parallel re
 - Check whether the valuation method fits the business archetype
 - Look for double counting, denominator errors, wrong peer groups, cycle-peak extrapolation, and mixed-segment contamination
 - Identify places where the thesis assumes the conclusion it tries to prove
+- Flag cross-industry false analogies (e.g. "MLCC monopoly more concentrated than NVIDIA" — different barrier types: material process vs ecosystem lock-in)
 
 ### Agent C: Bear-Case Scout
 
@@ -61,6 +64,11 @@ When the platform supports subagents and the review is material, run parallel re
 - Identify the next proof or disproof window
 
 If subagents are unavailable, run the same three passes sequentially and say that the review was not independently parallelized.
+
+**Pitfall — subagent timeout on broad data verification**: When there are many data points to verify (e.g. 20+ claims in a supply chain map), the Data Verifier subagent can hit max_iterations and return truncated. Mitigations:
+- Narrow Agent A's scope to the top 8-10 load-bearing claims only
+- For diagram/visual data review, run an explicit "verify stock codes" pass first, then verify market share claims separately
+- Accept partial results gracefully — Agent B (logic review) and agent-synthesized corrections often reveal the same errors
 
 ## Main-Agent Synthesis
 
@@ -72,6 +80,13 @@ The main agent owns the final judgment. Merge the subagent outputs, de-duplicate
 4. **Unresolved** — needs a specific source, filing, or future event
 
 Never let a subagent's unsupported assertion become the final verdict. Findings need evidence, a reasoning chain, or an explicit "unverified" label.
+
+## Post-Review: Apply Corrections
+
+After the review is delivered, the main agent should:
+1. Immediately apply confirmed factual corrections to the source document (knowledge base, diagram, or thesis file)
+2. Clearly label the changes so the user can verify
+3. Update revision metadata to track the adversarial review pass
 
 ## Output Template
 
